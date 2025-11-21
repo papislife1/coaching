@@ -7,9 +7,9 @@
     <style>
         :root {
             /* PALETTE COULEURS : Light & Natural */
-            --text-primary: #2c1810; /* Marron très foncé (presque noir) pour le texte */
-            --text-secondary: #6d5e58; /* Gris-Marron pour les sous-titres */
-            --accent: #8d6e63; /* Marron moyen pour les boutons */
+            --text-primary: #2c1810; /* Marron très foncé (Café) */
+            --text-secondary: #6d5e58; /* Gris-Marron */
+            --accent: #8d6e63; /* Marron moyen */
             
             /* Verre Blanc (Apple Style) */
             --glass-bg: rgba(255, 255, 255, 0.45); 
@@ -40,7 +40,7 @@
             height: 100vh;
             z-index: -1;
             overflow: hidden;
-            background: #f4ece6; /* Couleur de fond unie */
+            background: #f4ece6;
         }
 
         .blob {
@@ -51,7 +51,6 @@
             animation: float 25s infinite ease-in-out alternate;
         }
 
-        /* Bulle 1 : Marron clair / Doré */
         .blob-1 {
             top: -10%;
             left: -10%;
@@ -61,7 +60,6 @@
             animation-delay: 0s;
         }
 
-        /* Bulle 2 : Chocolat doux */
         .blob-2 {
             bottom: -10%;
             right: -10%;
@@ -71,7 +69,6 @@
             animation-delay: -5s;
         }
 
-        /* Bulle 3 : Beige rosée */
         .blob-3 {
             top: 40%;
             left: 40%;
@@ -88,14 +85,14 @@
             100% { transform: translate(0, 0) scale(1); }
         }
 
-        /* Composant Glassmorphism */
+        /* Composant Glassmorphism Standard */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(var(--blur));
             -webkit-backdrop-filter: blur(var(--blur));
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(100, 80, 70, 0.05); /* Ombre légère marron */
+            box-shadow: 0 8px 32px 0 rgba(100, 80, 70, 0.05);
             padding: 2rem;
             transition: transform 0.3s ease;
         }
@@ -140,7 +137,7 @@
         }
 
         .btn-cta {
-            background: #2c1810; /* Bouton foncé pour contraste */
+            background: #2c1810;
             color: white;
             padding: 8px 16px;
             border-radius: 30px;
@@ -172,7 +169,8 @@
             letter-spacing: -1px;
             margin-bottom: 20px;
             line-height: 1.1;
-            background: linear-gradient(45deg, #2c1810, #5d4037); /* Dégradé Marron */
+            /* Le dégradé marron du titre */
+            background: linear-gradient(45deg, #2c1810, #5d4037); 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -214,13 +212,17 @@
             gap: 20px;
         }
 
+        /* --- CARTE INSTAGRAM SPÉCIFIQUE (Correction Bordure) --- */
         .insta-card {
             height: 400px;
             border-radius: 24px;
             overflow: hidden;
             position: relative;
-            border: none;
-            padding: 0;
+            
+            /* C'est ici que la magie opère pour la couleur du bord */
+            border: 1px solid #2c1810; /* Bordure Marron Foncé */
+            background: #2c1810;       /* Fond marron foncé (pour éviter les flashs blancs) */
+            padding: 0 !important;     /* On force le contenu à toucher les bords */
         }
 
         .insta-card img, .insta-card video {
@@ -236,7 +238,8 @@
             left: 0;
             width: 100%;
             padding: 20px;
-            background: linear-gradient(to top, rgba(44, 24, 16, 0.7), transparent); /* Gradient marron foncé */
+            /* Gradient adapté au thème marron */
+            background: linear-gradient(to top, rgba(44, 24, 16, 0.85), transparent); 
             color: white;
             font-weight: 600;
             z-index: 2;
@@ -272,7 +275,7 @@
             width: 100%;
             padding: 15px;
             border-radius: 12px;
-            border: 1px solid rgba(141, 110, 99, 0.2); /* Bordure légère marron */
+            border: 1px solid rgba(141, 110, 99, 0.2);
             background: rgba(255,255,255,0.5);
             font-size: 1rem;
             color: var(--text-primary);
@@ -336,9 +339,14 @@
                 padding-bottom: 40px;
             }
             
+            /* Sur mobile, on garde le style glass standard pour le texte */
             .glass-card {
                 padding: 1.5rem;
-                background: rgba(255, 255, 255, 0.55); /* Un peu plus opaque sur mobile */
+            }
+            
+            /* MAIS on s'assure que l'insta-card n'a PAS de padding */
+            .insta-card {
+                padding: 0 !important;
             }
 
             h1 {
@@ -355,14 +363,14 @@
                 display: none;
             }
 
-            /* GRILLE MOBILE 2 COLONNES */
+            /* Grille 2 colonnes */
             .insta-grid {
                 grid-template-columns: 1fr 1fr; 
                 gap: 10px; 
             }
 
             .insta-card {
-                height: 230px; /* Légèrement réduit pour l'harmonie */
+                height: 230px;
                 border-radius: 16px;
             }
             
@@ -485,11 +493,10 @@
         </div>
     </section>
 
-    <!-- Section Calendly (Remis en mode clair pour matcher le thème) -->
+    <!-- Section Calendly -->
     <section id="calendly" class="container">
         <h2 class="section-title">Réserver un appel découverte</h2>
         <div class="glass-card" style="padding: 0.5rem;">
-            <!-- Widget Calendly avec couleurs standards -->
             <div class="calendly-inline-widget" data-url="https://calendly.com/widgunz3/30min?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=8d6e63" style="min-width:320px;height:700px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
