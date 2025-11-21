@@ -6,15 +6,15 @@
     <title>PapisLife | Coaching Sport & Nutrition</title>
     <style>
         :root {
-            /* PALETTE DE COULEURS DARK / LUXE */
-            --text-primary: #ffffff;
-            --text-secondary: #d1d1d1;
-            --accent: #D4AF37; /* Or / Marron clair pour les boutons */
+            /* PALETTE COULEURS : Light & Natural */
+            --text-primary: #2c1810; /* Marron très foncé (presque noir) pour le texte */
+            --text-secondary: #6d5e58; /* Gris-Marron pour les sous-titres */
+            --accent: #8d6e63; /* Marron moyen pour les boutons */
             
-            /* Verre Sombre */
-            --glass-bg: rgba(30, 30, 30, 0.60); 
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --blur: 20px;
+            /* Verre Blanc (Apple Style) */
+            --glass-bg: rgba(255, 255, 255, 0.45); 
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --blur: 25px;
         }
 
         * {
@@ -25,42 +25,77 @@
         }
 
         body {
-            background: #050505; /* Fond de base noir */
+            background: #f0eadd; /* Fond de base Beige clair */
             color: var(--text-primary);
             line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* Fond animé "Liquid" version Marron/Noir */
-        .liquid-bg {
+        /* --- FOND BULLES FLUIDES --- */
+        .background-blobs {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             z-index: -1;
-            background: 
-                /* Tâche Marron Clair / Doré */
-                radial-gradient(circle at 15% 50%, rgba(196, 164, 132, 0.25), transparent 30%),
-                /* Tâche Marron Foncé / Chocolat */
-                radial-gradient(circle at 85% 20%, rgba(62, 39, 35, 0.5), transparent 35%);
+            overflow: hidden;
+            background: #f4ece6; /* Couleur de fond unie */
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
             filter: blur(60px);
-            animation: moveBackground 20s infinite alternate;
+            opacity: 0.8;
+            animation: float 25s infinite ease-in-out alternate;
         }
 
-        @keyframes moveBackground {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+        /* Bulle 1 : Marron clair / Doré */
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: rgba(210, 180, 140, 0.5);
+            animation-delay: 0s;
         }
 
-        /* Composant Glassmorphism (Version Sombre) */
+        /* Bulle 2 : Chocolat doux */
+        .blob-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: rgba(188, 158, 130, 0.4);
+            animation-delay: -5s;
+        }
+
+        /* Bulle 3 : Beige rosée */
+        .blob-3 {
+            top: 40%;
+            left: 40%;
+            width: 40vw;
+            height: 40vw;
+            background: rgba(230, 200, 180, 0.6);
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* Composant Glassmorphism */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(var(--blur));
             -webkit-backdrop-filter: blur(var(--blur));
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Ombre noire */
+            box-shadow: 0 8px 32px 0 rgba(100, 80, 70, 0.05); /* Ombre légère marron */
             padding: 2rem;
             transition: transform 0.3s ease;
         }
@@ -79,17 +114,17 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(20, 20, 20, 0.8); /* Nav sombre */
+            background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
         }
 
         .logo {
             font-weight: 700;
             font-size: 1.1rem;
             letter-spacing: -0.5px;
-            color: white;
+            color: var(--text-primary);
         }
 
         .nav-links a {
@@ -105,19 +140,19 @@
         }
 
         .btn-cta {
-            background: white; /* Bouton blanc pour le contraste */
-            color: black;
+            background: #2c1810; /* Bouton foncé pour contraste */
+            color: white;
             padding: 8px 16px;
             border-radius: 30px;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
             white-space: nowrap;
-            transition: background 0.3s;
+            transition: opacity 0.3s;
         }
         
         .btn-cta:hover {
-            background: #ddd;
+            opacity: 0.8;
         }
 
         /* Hero Section */
@@ -133,12 +168,11 @@
 
         h1 {
             font-size: clamp(2.2rem, 5vw, 5rem);
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 20px;
             line-height: 1.1;
-            /* Dégradé de texte Or/Argent */
-            background: linear-gradient(45deg, #ffffff, #c0c0c0);
+            background: linear-gradient(45deg, #2c1810, #5d4037); /* Dégradé Marron */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -165,7 +199,7 @@
             font-weight: 700;
             margin: 4rem 0 2rem;
             letter-spacing: -0.5px;
-            color: white;
+            color: var(--text-primary);
         }
 
         .container {
@@ -187,7 +221,6 @@
             position: relative;
             border: none;
             padding: 0;
-            background: black;
         }
 
         .insta-card img, .insta-card video {
@@ -195,7 +228,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            opacity: 0.9; /* Légèrement sombre pour l'ambiance */
         }
 
         .overlay {
@@ -204,7 +236,7 @@
             left: 0;
             width: 100%;
             padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            background: linear-gradient(to top, rgba(44, 24, 16, 0.7), transparent); /* Gradient marron foncé */
             color: white;
             font-weight: 600;
             z-index: 2;
@@ -221,8 +253,6 @@
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
-        
-        h3 { color: white; }
 
         /* Contact & Form */
         .contact-section {
@@ -242,25 +272,16 @@
             width: 100%;
             padding: 15px;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.05); /* Fond input très léger */
+            border: 1px solid rgba(141, 110, 99, 0.2); /* Bordure légère marron */
+            background: rgba(255,255,255,0.5);
             font-size: 1rem;
-            color: white;
+            color: var(--text-primary);
             outline: none;
-        }
-        
-        input::placeholder, textarea::placeholder {
-            color: rgba(255,255,255,0.4);
-        }
-
-        input:focus, textarea:focus {
-            background: rgba(255,255,255,0.1);
-            border-color: rgba(255,255,255,0.3);
         }
 
         button[type="submit"] {
-            background: white;
-            color: black;
+            background: #2c1810;
+            color: white;
             border: none;
             padding: 15px;
             border-radius: 12px;
@@ -285,18 +306,18 @@
             flex: 1;
             text-align: center;
             padding: 12px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
             border-radius: 12px;
             text-decoration: none;
-            color: white;
+            color: var(--text-primary);
             font-weight: 600;
             font-size: 0.9rem;
-            transition: background 0.3s;
+            transition: transform 0.2s;
         }
         
         .social-btn:hover {
-            background: rgba(255,255,255,0.2);
+            transform: scale(1.02);
         }
 
         footer {
@@ -304,7 +325,6 @@
             padding: 40px 20px;
             color: var(--text-secondary);
             font-size: 0.8rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         /* --- OPTIMISATIONS MOBILES --- */
@@ -318,6 +338,7 @@
             
             .glass-card {
                 padding: 1.5rem;
+                background: rgba(255, 255, 255, 0.55); /* Un peu plus opaque sur mobile */
             }
 
             h1 {
@@ -334,19 +355,19 @@
                 display: none;
             }
 
-            /* GRILLE MOBILE OPTIMISÉE (3 lignes, 2 colonnes) */
+            /* GRILLE MOBILE 2 COLONNES */
             .insta-grid {
                 grid-template-columns: 1fr 1fr; 
                 gap: 10px; 
             }
 
             .insta-card {
-                height: 250px; 
+                height: 230px; /* Légèrement réduit pour l'harmonie */
                 border-radius: 16px;
             }
             
             .overlay {
-                padding: 10px;
+                padding: 12px;
                 font-size: 0.8rem;
             }
 
@@ -371,8 +392,12 @@
 </head>
 <body>
 
-    <!-- Fond Liquide Marron/Noir -->
-    <div class="liquid-bg"></div>
+    <!-- Fond Bulles Fluides -->
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
     <!-- Navigation -->
     <nav>
@@ -387,7 +412,7 @@
 
     <!-- Header -->
     <header>
-        <div class="glass-card hero-content" style="background: rgba(20,20,20,0.4); border:none; box-shadow:none;">
+        <div class="glass-card hero-content" style="background: rgba(255,255,255,0.3); border:none; box-shadow:none;">
             <h1>Deviens la meilleure<br>version de toi-même.</h1>
             <p class="subtitle">Sport, Nutrition & Mindset. Un accompagnement sur-mesure pour atteindre tes objectifs et adopter un style de vie sain.</p>
             <a href="#services" class="btn-cta" style="padding: 15px 40px; font-size: 1.1rem;">Découvrir mes programmes</a>
@@ -460,12 +485,12 @@
         </div>
     </section>
 
-    <!-- Section Calendly (Adapté au fond sombre) -->
+    <!-- Section Calendly (Remis en mode clair pour matcher le thème) -->
     <section id="calendly" class="container">
         <h2 class="section-title">Réserver un appel découverte</h2>
         <div class="glass-card" style="padding: 0.5rem;">
-            <!-- Widget Calendly avec fond sombre (background_color=1a1a1a) et texte blanc (text_color=ffffff) -->
-            <div class="calendly-inline-widget" data-url="https://calendly.com/widgunz3/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=D4AF37" style="min-width:320px;height:700px;"></div>
+            <!-- Widget Calendly avec couleurs standards -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/widgunz3/30min?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=8d6e63" style="min-width:320px;height:700px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
     </section>
@@ -494,8 +519,8 @@
                 <p style="color: var(--text-secondary); margin-bottom: 20px;">Tu préfères passer par les réseaux ou m'envoyer un mail direct ?</p>
                 
                 <div class="social-links">
-                    <a href="https://www.instagram.com/papislife1/" target="_blank" class="social-btn">Instagram</a>
-                    <a href="mailto:widgunz3@gmail.com" class="social-btn">Email</a>
+                    <a href="https://www.instagram.com/papislife1/" target="_blank" class="social-btn" style="color: #E1306C;">Instagram</a>
+                    <a href="mailto:widgunz3@gmail.com" class="social-btn" style="color: #007aff;">Email</a>
                 </div>
             </div>
         </div>
