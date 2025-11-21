@@ -120,13 +120,13 @@
 
         /* Hero Section */
         header {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 120px 20px 40px 20px;
         }
 
         h1 {
@@ -168,11 +168,13 @@
         }
 
         .insta-card {
-            height: 400px;
+            height: 450px;
             border-radius: 24px;
             overflow: hidden;
             position: relative;
             cursor: pointer;
+            border: none;
+            padding: 0;
         }
 
         .insta-card img, .insta-card video {
@@ -180,9 +182,10 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
+            display: block;
         }
 
-        .insta-card:hover img {
+        .insta-card:hover img, .insta-card:hover video {
             transform: scale(1.05);
         }
 
@@ -195,6 +198,7 @@
             background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
             color: white;
             font-weight: 500;
+            z-index: 2;
         }
 
         /* Services */
@@ -272,6 +276,11 @@
             color: black;
             font-weight: 600;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .social-btn:hover {
+            transform: scale(1.02);
         }
 
         footer {
@@ -290,6 +299,9 @@
             }
             .nav-links {
                 display: none;
+            }
+            .insta-card {
+                height: 350px;
             }
         }
     </style>
@@ -323,23 +335,43 @@
     <section id="about" class="container">
         <h2 class="section-title">Mon Lifestyle</h2>
         <div class="insta-grid">
-            <!-- PHOTO 1 : Remplace src par ta photo -->
-            <div class="insta-card glass-card" style="padding:0; border:none;">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Entrainement">
-                <div class="overlay">Dépassement de soi</div>
+            
+            <!-- MEDIA 1 : Image -->
+            <div class="insta-card glass-card">
+                <img src="images/IMAGE-1.PNG" alt="Training">
+                <div class="overlay">Training Day</div>
             </div>
-            <!-- VIDEO : Exemple avec vidéo -->
-            <div class="insta-card glass-card" style="padding:0; border:none;">
-                <!-- Remplace la source vidéo par ton fichier local ou lien -->
-                 <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nutrition">
-                 <!-- <video src="ton-film.mp4" autoplay muted loop playsinline></video> -->
-                <div class="overlay">Nutrition Saine</div>
+
+            <!-- MEDIA 2 : Vidéo (Autoplay, Muted, Loop) -->
+            <div class="insta-card glass-card">
+                <video src="images/VIDEO-1.mp4" autoplay muted loop playsinline></video>
+                <div class="overlay">Motivation</div>
             </div>
-            <!-- PHOTO 3 -->
-            <div class="insta-card glass-card" style="padding:0; border:none;">
-                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coaching">
-                <div class="overlay">Coaching Personnalisé</div>
+
+            <!-- MEDIA 3 : Image -->
+            <div class="insta-card glass-card">
+                <img src="images/IMAGE-2.PNG" alt="Nutrition">
+                <div class="overlay">Healthy Food</div>
             </div>
+
+            <!-- MEDIA 4 : Vidéo -->
+            <div class="insta-card glass-card">
+                <video src="images/VIDEO-2.mp4" autoplay muted loop playsinline></video>
+                <div class="overlay">Focus</div>
+            </div>
+
+            <!-- MEDIA 5 : Image -->
+            <div class="insta-card glass-card">
+                <img src="images/IMAGE-3.PNG" alt="Lifestyle">
+                <div class="overlay">Lifestyle</div>
+            </div>
+
+            <!-- MEDIA 6 : Vidéo -->
+            <div class="insta-card glass-card">
+                <video src="images/VIDEO-3.mp4" autoplay muted loop playsinline></video>
+                <div class="overlay">Progression</div>
+            </div>
+
         </div>
     </section>
 
@@ -368,11 +400,10 @@
     <!-- Section Calendly -->
     <section id="calendly" class="container">
         <h2 class="section-title">Réserver un appel découverte</h2>
-        <div class="glass-card">
-            <!-- Début de widget en ligne Calendly -->
-            <div class="calendly-inline-widget" data-url="https://calendly.com/widgunz3/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1d1d1f&primary_color=007aff" style="min-width:320px;height:630px;"></div>
+        <div class="glass-card" style="padding: 1rem;">
+            <!-- Widget Calendly -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/widgunz3/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1d1d1f&primary_color=007aff" style="min-width:320px;height:650px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-            <!-- Fin de widget en ligne Calendly -->
         </div>
     </section>
 
@@ -381,10 +412,9 @@
         <h2 class="section-title">Une question ?</h2>
         <div class="contact-section">
             
-            <!-- Formulaire de contact -->
-            <!-- NOTE: Pour que ce formulaire fonctionne, utilise Formspree.io (gratuit) et remplace l'URL dans 'action' -->
+            <!-- Formulaire de contact connecté à Formspree -->
             <div class="glass-card">
-                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                <form action="https://formspree.io/f/mgvqvvvy" method="POST">
                     <h3>Pose-moi ta question</h3>
                     <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px;">La réponse sera envoyée sur ton mail.</p>
                     
