@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PapisLife | Coaching Sport & Nutrition</title>
+    <style>
+        :root {
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent: #007aff;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --blur: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: #fbfbfd;
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Fond animé style "Liquid" */
+        .liquid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(255, 190, 118, 0.4), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(129, 236, 236, 0.4), transparent 25%);
+            filter: blur(60px);
+            animation: moveBackground 20s infinite alternate;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Composant Glassmorphism */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--blur));
+            -webkit-backdrop-filter: blur(var(--blur));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1000px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .btn-cta {
+            background: var(--text-primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .btn-cta:hover {
+            background: #000;
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #1d1d1f, #434344);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* Instagram Grid Section */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 4rem 0 2rem;
+            letter-spacing: -1px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .insta-card {
+            height: 400px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .insta-card img, .insta-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .insta-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 4rem;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Form & Calendly */
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 4rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.5);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            background: white;
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+        }
+
+        button[type="submit"] {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background: #005bb5;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fond Liquide -->
+    <div class="liquid-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">PapisLife</div>
+        <div class="nav-links">
+            <a href="#about">Lifestyle</a>
+            <a href="#services">Coaching</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <a href="#calendly" class="btn-cta">Réserver un appel</a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="glass-card" style="background: rgba(255,255,255,0.4); border:none; box-shadow:none;">
+            <h1>Deviens la meilleure<br>version de toi-même.</h1>
+            <p class="subtitle">Sport, Nutrition & Mindset. Un accompagnement sur-mesure pour atteindre tes objectifs et adopter un style de vie sain.</p>
+            <a href="#services" class="btn-cta" style="padding: 15px 40px; font-size: 1.1rem;">Découvrir mes programmes</a>
+        </div>
+    </header>
+
+    <!-- Section Instagram / Lifestyle -->
+    <section id="about" class="container">
+        <h2 class="section-title">Mon Lifestyle</h2>
+        <div class="insta-grid">
+            <!-- PHOTO 1 : Remplace src par ta photo -->
+            <div class="insta-card glass-card" style="padding:0; border:none;">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Entrainement">
+                <div class="overlay">Dépassement de soi</div>
+            </div>
+            <!-- VIDEO : Exemple avec vidéo -->
+            <div class="insta-card glass-card" style="padding:0; border:none;">
+                <!-- Remplace la source vidéo par ton fichier local ou lien -->
+                 <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nutrition">
+                 <!-- <video src="ton-film.mp4" autoplay muted loop playsinline></video> -->
+                <div class="overlay">Nutrition Saine</div>
+            </div>
+            <!-- PHOTO 3 -->
+            <div class="insta-card glass-card" style="padding:0; border:none;">
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coaching">
+                <div class="overlay">Coaching Personnalisé</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Services -->
+    <section id="services" class="container">
+        <h2 class="section-title">Mes Services</h2>
+        <div class="services-grid">
+            <div class="glass-card">
+                <div class="service-icon">💪</div>
+                <h3>Coaching Sportif</h3>
+                <p style="color: var(--text-secondary); margin-top: 10px;">Programmes d'entraînement personnalisés, adaptés à ton niveau et tes objectifs (perte de poids, prise de masse, endurance).</p>
+            </div>
+            <div class="glass-card">
+                <div class="service-icon">🥗</div>
+                <h3>Suivi Nutritionnel</h3>
+                <p style="color: var(--text-secondary); margin-top: 10px;">Apprends à manger sainement sans te priver. Plans alimentaires flexibles et conseils quotidiens pour une énergie au top.</p>
+            </div>
+            <div class="glass-card">
+                <div class="service-icon">🧠</div>
+                <h3>Mindset & Motivation</h3>
+                <p style="color: var(--text-secondary); margin-top: 10px;">Un soutien constant pour rester motivé, ne rien lâcher et intégrer le sport comme une habitude de vie.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Calendly -->
+    <section id="calendly" class="container">
+        <h2 class="section-title">Réserver un appel découverte</h2>
+        <div class="glass-card">
+            <!-- Début de widget en ligne Calendly -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/widgunz3/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1d1d1f&primary_color=007aff" style="min-width:320px;height:630px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <!-- Fin de widget en ligne Calendly -->
+        </div>
+    </section>
+
+    <!-- Section Contact / Question -->
+    <section id="contact" class="container">
+        <h2 class="section-title">Une question ?</h2>
+        <div class="contact-section">
+            
+            <!-- Formulaire de contact -->
+            <!-- NOTE: Pour que ce formulaire fonctionne, utilise Formspree.io (gratuit) et remplace l'URL dans 'action' -->
+            <div class="glass-card">
+                <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                    <h3>Pose-moi ta question</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 15px;">La réponse sera envoyée sur ton mail.</p>
+                    
+                    <input type="email" name="email" placeholder="Ton adresse email" required>
+                    <textarea name="message" rows="5" placeholder="Ta question sur le sport ou la nutrition..." required></textarea>
+                    
+                    <button type="submit">Envoyer ma question</button>
+                </form>
+            </div>
+
+            <!-- Contact Direct -->
+            <div class="glass-card" style="display: flex; flex-direction: column; justify-content: center;">
+                <h3>Contact direct</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Tu préfères passer par les réseaux ou m'envoyer un mail direct ?</p>
+                
+                <div class="social-links">
+                    <a href="https://www.instagram.com/papislife1/" target="_blank" class="social-btn" style="color: #E1306C;">Instagram DM</a>
+                    <a href="mailto:widgunz3@gmail.com" class="social-btn" style="color: #007aff;">Email</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 PapisLife. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
