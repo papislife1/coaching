@@ -6,11 +6,14 @@
     <title>PapisLife | Coaching Sport & Nutrition</title>
     <style>
         :root {
-            --text-primary: #1d1d1f;
-            --text-secondary: #86868b;
-            --accent: #007aff;
-            --glass-bg: rgba(255, 255, 255, 0.75); /* Fond un peu plus opaque pour lisibilité mobile */
-            --glass-border: rgba(255, 255, 255, 0.5);
+            /* PALETTE DE COULEURS DARK / LUXE */
+            --text-primary: #ffffff;
+            --text-secondary: #d1d1d1;
+            --accent: #D4AF37; /* Or / Marron clair pour les boutons */
+            
+            /* Verre Sombre */
+            --glass-bg: rgba(30, 30, 30, 0.60); 
+            --glass-border: rgba(255, 255, 255, 0.1);
             --blur: 20px;
         }
 
@@ -22,13 +25,13 @@
         }
 
         body {
-            background: #fbfbfd;
+            background: #050505; /* Fond de base noir */
             color: var(--text-primary);
             line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* Fond animé style "Liquid" */
+        /* Fond animé "Liquid" version Marron/Noir */
         .liquid-bg {
             position: fixed;
             top: 0;
@@ -37,8 +40,10 @@
             height: 100vh;
             z-index: -1;
             background: 
-                radial-gradient(circle at 15% 50%, rgba(255, 190, 118, 0.4), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(129, 236, 236, 0.4), transparent 25%);
+                /* Tâche Marron Clair / Doré */
+                radial-gradient(circle at 15% 50%, rgba(196, 164, 132, 0.25), transparent 30%),
+                /* Tâche Marron Foncé / Chocolat */
+                radial-gradient(circle at 85% 20%, rgba(62, 39, 35, 0.5), transparent 35%);
             filter: blur(60px);
             animation: moveBackground 20s infinite alternate;
         }
@@ -48,14 +53,14 @@
             100% { transform: scale(1.1); }
         }
 
-        /* Composant Glassmorphism */
+        /* Composant Glassmorphism (Version Sombre) */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(var(--blur));
             -webkit-backdrop-filter: blur(var(--blur));
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Ombre noire */
             padding: 2rem;
             transition: transform 0.3s ease;
         }
@@ -66,7 +71,7 @@
             top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 95%; /* Plus large sur mobile */
+            width: 95%;
             max-width: 1000px;
             padding: 12px 20px;
             border-radius: 50px;
@@ -74,16 +79,17 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(20, 20, 20, 0.8); /* Nav sombre */
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
         .logo {
             font-weight: 700;
             font-size: 1.1rem;
             letter-spacing: -0.5px;
+            color: white;
         }
 
         .nav-links a {
@@ -99,14 +105,19 @@
         }
 
         .btn-cta {
-            background: var(--text-primary);
-            color: white;
+            background: white; /* Bouton blanc pour le contraste */
+            color: black;
             padding: 8px 16px;
             border-radius: 30px;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
-            white-space: nowrap; /* Empêche le texte de passer à la ligne */
+            white-space: nowrap;
+            transition: background 0.3s;
+        }
+        
+        .btn-cta:hover {
+            background: #ddd;
         }
 
         /* Hero Section */
@@ -126,7 +137,8 @@
             letter-spacing: -1px;
             margin-bottom: 20px;
             line-height: 1.1;
-            background: linear-gradient(45deg, #1d1d1f, #434344);
+            /* Dégradé de texte Or/Argent */
+            background: linear-gradient(45deg, #ffffff, #c0c0c0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -135,7 +147,7 @@
             font-size: clamp(1rem, 2vw, 1.3rem);
             color: var(--text-secondary);
             max-width: 600px;
-            margin: 0 auto 30px auto; /* Centré avec marge en bas */
+            margin: 0 auto 30px auto;
             line-height: 1.4;
         }
 
@@ -143,7 +155,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px; /* Espace entre les éléments pour éviter le chevauchement */
+            gap: 20px;
         }
 
         /* Instagram Grid Section */
@@ -153,6 +165,7 @@
             font-weight: 700;
             margin: 4rem 0 2rem;
             letter-spacing: -0.5px;
+            color: white;
         }
 
         .container {
@@ -168,12 +181,13 @@
         }
 
         .insta-card {
-            height: 400px; /* Taille par défaut PC */
+            height: 400px;
             border-radius: 24px;
             overflow: hidden;
             position: relative;
             border: none;
             padding: 0;
+            background: black;
         }
 
         .insta-card img, .insta-card video {
@@ -181,6 +195,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            opacity: 0.9; /* Légèrement sombre pour l'ambiance */
         }
 
         .overlay {
@@ -189,7 +204,7 @@
             left: 0;
             width: 100%;
             padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             color: white;
             font-weight: 600;
             z-index: 2;
@@ -206,6 +221,8 @@
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
+        
+        h3 { color: white; }
 
         /* Contact & Form */
         .contact-section {
@@ -225,21 +242,37 @@
             width: 100%;
             padding: 15px;
             border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.1);
-            background: rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05); /* Fond input très léger */
             font-size: 1rem;
+            color: white;
             outline: none;
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+
+        input:focus, textarea:focus {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
         }
 
         button[type="submit"] {
-            background: #007aff;
-            color: white;
+            background: white;
+            color: black;
             border: none;
             padding: 15px;
             border-radius: 12px;
             font-size: 1rem;
             font-weight: 600;
             margin-top: 10px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            opacity: 0.8;
         }
 
         .social-links {
@@ -252,13 +285,18 @@
             flex: 1;
             text-align: center;
             padding: 12px;
-            background: white;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px;
             text-decoration: none;
-            color: black;
+            color: white;
             font-weight: 600;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        
+        .social-btn:hover {
+            background: rgba(255,255,255,0.2);
         }
 
         footer {
@@ -266,24 +304,24 @@
             padding: 40px 20px;
             color: var(--text-secondary);
             font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* --- OPTIMISATIONS MOBILES (C'est ici que tout se joue) --- */
+        /* --- OPTIMISATIONS MOBILES --- */
         @media (max-width: 768px) {
             
-            /* Header : Plus flexible, pas de hauteur forcée */
             header {
-                min-height: auto; /* Laisse la hauteur s'adapter au contenu */
-                padding-top: 100px; /* Espace pour la barre de nav */
+                min-height: auto;
+                padding-top: 100px;
                 padding-bottom: 40px;
             }
             
             .glass-card {
-                padding: 1.5rem; /* Moins de marge intérieur sur mobile */
+                padding: 1.5rem;
             }
 
             h1 {
-                font-size: 2.2rem; /* Titre un peu plus petit */
+                font-size: 2.2rem;
                 margin-bottom: 15px;
             }
 
@@ -292,19 +330,24 @@
                 margin-bottom: 25px;
             }
 
-            /* Masquer les liens de navigation (sauf le bouton Appel) */
             .nav-links {
                 display: none;
             }
 
-            /* Correction des Images/Vidéos "Trop grosses" */
+            /* GRILLE MOBILE OPTIMISÉE (3 lignes, 2 colonnes) */
             .insta-grid {
-                grid-template-columns: 1fr; /* Une seule colonne */
-                gap: 25px; /* Plus d'espace entre les cartes */
+                grid-template-columns: 1fr 1fr; 
+                gap: 10px; 
             }
 
             .insta-card {
-                height: 280px; /* REDUCTION DE LA HAUTEUR (c'était 450px avant) */
+                height: 250px; 
+                border-radius: 16px;
+            }
+            
+            .overlay {
+                padding: 10px;
+                font-size: 0.8rem;
             }
 
             .section-title {
@@ -314,10 +357,9 @@
             }
 
             .contact-section {
-                grid-template-columns: 1fr; /* Contact l'un sous l'autre */
+                grid-template-columns: 1fr;
             }
             
-            /* Bouton CTA Header plus large sur mobile */
             header .btn-cta {
                 width: 100%;
                 display: block;
@@ -329,7 +371,7 @@
 </head>
 <body>
 
-    <!-- Fond Liquide -->
+    <!-- Fond Liquide Marron/Noir -->
     <div class="liquid-bg"></div>
 
     <!-- Navigation -->
@@ -345,7 +387,7 @@
 
     <!-- Header -->
     <header>
-        <div class="glass-card hero-content" style="background: rgba(255,255,255,0.5); border:none; box-shadow:none;">
+        <div class="glass-card hero-content" style="background: rgba(20,20,20,0.4); border:none; box-shadow:none;">
             <h1>Deviens la meilleure<br>version de toi-même.</h1>
             <p class="subtitle">Sport, Nutrition & Mindset. Un accompagnement sur-mesure pour atteindre tes objectifs et adopter un style de vie sain.</p>
             <a href="#services" class="btn-cta" style="padding: 15px 40px; font-size: 1.1rem;">Découvrir mes programmes</a>
@@ -360,7 +402,7 @@
             <!-- MEDIA 1 -->
             <div class="insta-card glass-card">
                 <img src="images/IMAGE-1.PNG" alt="Training">
-                <div class="overlay">Training Day</div>
+                <div class="overlay">Training</div>
             </div>
 
             <!-- MEDIA 2 -->
@@ -418,12 +460,12 @@
         </div>
     </section>
 
-    <!-- Section Calendly -->
+    <!-- Section Calendly (Adapté au fond sombre) -->
     <section id="calendly" class="container">
         <h2 class="section-title">Réserver un appel découverte</h2>
         <div class="glass-card" style="padding: 0.5rem;">
-            <!-- Widget Calendly -->
-            <div class="calendly-inline-widget" data-url="https://calendly.com/widgunz3/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1d1d1f&primary_color=007aff" style="min-width:320px;height:700px;"></div>
+            <!-- Widget Calendly avec fond sombre (background_color=1a1a1a) et texte blanc (text_color=ffffff) -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/widgunz3/30min?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=D4AF37" style="min-width:320px;height:700px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
     </section>
@@ -452,8 +494,8 @@
                 <p style="color: var(--text-secondary); margin-bottom: 20px;">Tu préfères passer par les réseaux ou m'envoyer un mail direct ?</p>
                 
                 <div class="social-links">
-                    <a href="https://www.instagram.com/papislife1/" target="_blank" class="social-btn" style="color: #E1306C;">Instagram</a>
-                    <a href="mailto:widgunz3@gmail.com" class="social-btn" style="color: #007aff;">Email</a>
+                    <a href="https://www.instagram.com/papislife1/" target="_blank" class="social-btn">Instagram</a>
+                    <a href="mailto:widgunz3@gmail.com" class="social-btn">Email</a>
                 </div>
             </div>
         </div>
